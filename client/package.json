@@ -1,0 +1,12 @@
+{
+  "name": "level-sync",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "eslint": "^10.0.0"
+	"babel": "^7.29.0"
+  }
+}
