@@ -1,17 +1,17 @@
-
-function MyButton()
-{
-    return (
-        <button>Click Me</button>
-    );
-}
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/home';
+import Dashboard from './pages/Dashboard';
+import Profile from './pages/Profile';
 
 export default function MyApp() 
 {
     return (
-        <div>
-            <h1>Welcome to my app!</h1>
-            <MyButton/>
-        </div>
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/profile" element={<Profile />} />
+            </Routes>
+        </BrowserRouter>
     );
 }
