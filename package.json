@@ -1,0 +1,20 @@
+{
+  "name": "level-sync",
+  "version": "1.0.0",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.17.0",
+    "vite": "^6.0.7"
+  }
+}
