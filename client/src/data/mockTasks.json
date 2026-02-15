@@ -1,0 +1,52 @@
+[
+    {
+	"id": 1,
+	"title": "Workout",
+	"description": "30 min light cardio",
+	"category": "health",
+	"completed": false,
+	"xpValue": 25,
+	"dueTime": "20:00",
+	"recurring": true
+    },
+    {
+	"id": 2,
+	"title": "Shower",
+	"description": "Take a quick warm shower",
+	"category": "selfcare",
+	"completed": false,
+	"xpValue": 10,
+	"dueTime": "13:00",
+	"recurring": true
+    },
+    {
+	"id": 3,
+	"title": "Start coding",
+	"description": "Continue developing personal projects",
+	"category": "work",
+	"completed": false,
+	"xpValue": 40,
+	"dueTime": "16:00",
+	"recurring": true
+    },
+    {
+	"id": 4,
+	"title": "Touch grass",
+	"description": "Take a walk outside, get some fresh air",
+	"category": "selfcare",
+	"completed": false,
+	"xpValue": 25,
+	"dueTime": "18:00",
+	"recurring": true
+  },
+    {
+	"id": 5,
+	"title": "Make dinner",
+	"description": "Buy groceries and make a well deserved meal",
+	"category": "health",
+	"completed": false,
+	"xpValue": 10,
+	"dueTime": "20:00",
+	"recurring": true
+    }
+]
