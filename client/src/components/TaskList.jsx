@@ -7,12 +7,16 @@ export default function TaskList({ tasks, setTasks }) {
     );
   };
 
+  const deleteTask = (taskId) => {
+    setTasks(tasks.filter((task) => task.id !== taskId));
+  };
+
   return (
     <div>
       <h2>My Tasks</h2>
       {tasks.map((task) => (
         <div key={task.id}>
-          <div>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <h3>{task.title}</h3>
             <p>{task.description}</p>
             <input
@@ -22,6 +26,7 @@ export default function TaskList({ tasks, setTasks }) {
             />
             <span>Completed</span>
             <br />
+            <button onClick={() => deleteTask(task.id)}>Delete</button>
           </div>
         </div>
       ))}
