@@ -16,9 +16,11 @@ export default function TaskList({ tasks, setTasks }) {
       <h2>My Tasks</h2>
       {tasks.map((task) => (
         <div key={task.id}>
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+          <div>
             <h3>{task.title}</h3>
             <p>{task.description}</p>
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <input
               type="checkbox"
               checked={task.completed}
