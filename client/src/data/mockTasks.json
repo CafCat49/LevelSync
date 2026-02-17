@@ -38,7 +38,7 @@
 	"xpValue": 25,
 	"dueTime": "18:00",
 	"recurring": true
-  },
+    },
     {
 	"id": 5,
 	"title": "Make dinner",

@@ -25,7 +25,6 @@ export default function TaskList({ tasks, setTasks }) {
           </div>
         </div>
       ))}
-
     </div>
   );
 }
