@@ -1,34 +1,41 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { taskService } from '../services/taskService';
 
-export default function AddTaskForm({ tasks, setTasks }) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+export default function AddTaskForm({ onTaskAdded }) {
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newTask = {
-      id: tasks.length + 1,
-      title: title,
-      description: description,
-      category: "General",
-      completed: false,
-      xpValue: 10,
-      recurring: false,
-    };
-    setTasks([...tasks, newTask]);
-    setTitle("");
-    setDescription("");
+    
+    try {
+      await taskService.createTask({
+        title,
+        description,
+        category: 'general',
+        completed: false,
+        xpValue: 10,
+        recurring: false
+      });
+      
+      setTitle('');
+      setDescription('');
+      onTaskAdded(); // Reload tasks from server
+    } catch (error) {
+      console.error('Error creating task:', error);
+    }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <input 
         type="text"
         placeholder="Task title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        required
       />
-      <input
+      <input 
         type="text"
         placeholder="Description"
         value={description}
