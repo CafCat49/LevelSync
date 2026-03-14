@@ -4,8 +4,12 @@ import styled from 'styled-components';
 
 // Styled components
 const TaskListContainer = styled.div`
-  max-width: 800px;
+  max-width: 1200x;
   margin: 20px auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 `;
 
 const TaskCard = styled.div`
@@ -13,9 +17,8 @@ const TaskCard = styled.div`
   border: 2px solid ${props => props.completed ? '#00b894' : '#6c5ce7'};
   border-radius: 8px;
   padding: 20px;
-  margin: 15px 0;
   transition: all 0.3s ease;
-  max-width: 200px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -147,34 +150,36 @@ export default function TaskList({ tasks, onTaskUpdated }) {
   };
 
   return (
-    <div>
-      <h2>My Tasks</h2>
+    <>
+      <h2 style={{ color: '#00b894', textAlign: 'center' }}>My Tasks</h2>
+      <TaskListContainer>
       {tasks.map((task) => (
-        <div key={task.id}>
+        <TaskCard key={task.id} completed={task.completed}> 
           {editingId === task.id ? (
-            <div>
-              <input
+            <EditForm> 
+              <Input
                 type="text"
                 value={editTitle}
                 onChange={(e) => setEditTitle(e.target.value)}
               />
-              <input
+              <Input
                 type="text"
                 value={editDescription}
                 onChange={(e) => setEditDescription(e.target.value)}
               />
-              <button onClick={() => saveEdit(task)}>Save</button>
-              <button onClick={() => setEditingId(null)}>Cancel</button>
-            </div>
+              <Button onClick={() => saveEdit(task)}>Save</Button>
+              <Button onClick={() => setEditingId(null)}>Cancel</Button>
+            </EditForm>
           ) : (
-            <div>
-              <TaskCard>
+            <>
+              <TaskContent>
                 <TaskTitle completed={task.completed}>
                   {task.title}
                 </TaskTitle>
                 <TaskDescription>
                   {task.description}
                 </TaskDescription>
+              </TaskContent>
                 <TaskActions>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
                   <Checkbox
@@ -189,12 +194,11 @@ export default function TaskList({ tasks, onTaskUpdated }) {
                     <Button variant="delete" onClick={() => deleteTask(task.id)}>Delete</Button>
                   </div>
                 </TaskActions>
-              </TaskCard>
-              
-            </div>
+            </>
           )}
-        </div>
+        </TaskCard>
       ))}
-    </div>
+      </TaskListContainer>
+    </>
   );
 }
