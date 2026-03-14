@@ -1,6 +1,105 @@
 import { useState } from 'react';
 import { taskService } from '../services/taskService';
+import styled from 'styled-components';
 
+// Styled components
+const TaskListContainer = styled.div`
+  max-width: 800px;
+  margin: 20px auto;
+`;
+
+const TaskCard = styled.div`
+  background: #2d3436;
+  border: 2px solid ${props => props.completed ? '#00b894' : '#6c5ce7'};
+  border-radius: 8px;
+  padding: 20px;
+  margin: 15px 0;
+  transition: all 0.3s ease;
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 92, 231, 0.3);
+  }
+`;
+
+const TaskContent = styled.div`
+  color: white;
+  margin-bottom: 15px;
+  text-align: center; 
+`;
+
+const TaskTitle = styled.h3`
+  margin: 0 0 8px 0;
+  color: ${props => props.completed ? '#b2bec3' : '#00b894'};
+  text-decoration: ${props => props.completed ? 'line-through' : 'none'};
+  font-size: 24px;
+`;
+
+const TaskDescription = styled.p`
+  margin: 0;
+  margin-bottom: 20px;
+  color: #dfe6e9;
+  font-size: 16px;
+`;
+
+const TaskActions = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+`;
+
+const Checkbox = styled.input`
+  width: 20px;
+  height: 20px;
+  margin-left: 0px;
+  cursor: pointer;
+`;
+
+const Button = styled.button`
+  background-color: ${props => props.variant === 'delete' ? '#d63031' : '#6c5ce7'};
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  
+  &:hover {
+    background-color: ${props => props.variant === 'delete' ? '#c0392b' : '#5f4dd1'};
+  }
+`;
+
+const EditForm = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+const Input = styled.input`
+  background: #34495e;
+  border: 1px solid #6c5ce7;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  font-size: 14px;
+  
+  &:focus {
+    outline: none;
+    border-color: #00b894;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 10px;
+`;
+
+// Component 
 export default function TaskList({ tasks, onTaskUpdated }) {
   const [editingId, setEditingId] = useState(null);
   const [editTitle, setEditTitle] = useState('');
@@ -69,20 +168,29 @@ export default function TaskList({ tasks, onTaskUpdated }) {
             </div>
           ) : (
             <div>
-              <div>
-                <h3>{task.title}</h3>
-                <p>{task.description}</p>
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <input
-                  type="checkbox"
-                  checked={task.completed}
-                  onChange={() => toggleComplete(task)}
-                />
-                <span>Complete</span>
-                <button onClick={() => startEdit(task)}>Edit</button>
-                <button onClick={() => deleteTask(task.id)}>Delete</button>
-              </div>
+              <TaskCard>
+                <TaskTitle completed={task.completed}>
+                  {task.title}
+                </TaskTitle>
+                <TaskDescription>
+                  {task.description}
+                </TaskDescription>
+                <TaskActions>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '3px' }}>
+                  <Checkbox
+                    type="checkbox"
+                    checked={task.completed}
+                    onChange={() => toggleComplete(task)}
+                  />
+                  <span style={{ color: '#dfe6e9' }}>Complete</span>
+                  </div>
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    <Button onClick={() => startEdit(task)}>Edit</Button>
+                    <Button variant="delete" onClick={() => deleteTask(task.id)}>Delete</Button>
+                  </div>
+                </TaskActions>
+              </TaskCard>
+              
             </div>
           )}
         </div>
