@@ -53,7 +53,6 @@
 **Pages:**
 - Home
 - Dashboard (main task view)
-- Task creation/edit
 - Profile
 
 ![Home Page](images/LS_home.png)
