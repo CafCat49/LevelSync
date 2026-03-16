@@ -16,6 +16,69 @@
 
 # Core Features (MVP)
 - [X] Feature 1: Create/edit/delete tasks
-- [ ] Feature 2: Daily task list view
+- [X] Feature 2: Daily task list view
 - [ ] Feature 3: Task completion tracking
 - [ ] Feature 4: Simple XP/level system
+
+---
+
+## Future Features (Post-MVP)
+- [ ] Customizable reminders
+- [ ] Streak tracking
+- [ ] User authentication
+- [ ] Theme customization
+
+---
+
+## Technical Architecture
+
+**Frontend:**
+- Framework: React.js
+- State Management: Context API
+- Styling: CSS styled-components
+
+**Backend:**
+- Server: Kotlin + Spring boot
+- Database: PostgreSQL
+- API: RESTful
+
+**Deployment:**
+- Frontend: TBD
+- Backend: TBD
+
+---
+
+## Database Schema
+
+**Users Table:**
+- 
+
+**Tasks Table:**
+- 
+
+**Progress/Stats Table:**
+- 
+
+---
+
+## User Interface
+
+**Pages:**
+- Home
+- Dashboard (main task view)
+- Task creation/edit
+- Profile
+
+**Key UI Elements:**
+- 
+
+**Design Principles:**
+- 
+
+---
+
+## Gamification Elements
+
+- Personal XP gain
+- Level progression
+- Cosmetic rewards
