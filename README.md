@@ -48,19 +48,6 @@
 
 ---
 
-## Database Schema
-
-**Users Table:**
-- 
-
-**Tasks Table:**
-- 
-
-**Progress/Stats Table:**
-- 
-
----
-
 ## User Interface
 
 **Pages:**
@@ -69,11 +56,9 @@
 - Task creation/edit
 - Profile
 
-**Key UI Elements:**
-- 
-
-**Design Principles:**
-- 
+![Home Page](images/LS_home.png)
+![Task Dashboard](images/LS_dash.png)
+![User Profile](images/LS_profile.png)
 
 ---
 
