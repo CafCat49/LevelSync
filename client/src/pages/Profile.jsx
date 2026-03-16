@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { taskService } from '../services/taskService';
+import { userService } from '../services/userService';
 import styled from 'styled-components';
 
 const ProfileContainer = styled.div`
@@ -40,6 +41,44 @@ const Username = styled.h1`
   color: #6c5ce7;
   margin: 0;
   font-size: 36px;
+`;
+
+const UsernameInput = styled.input`
+  background: #34495e;
+  border: 1px solid #6c5ce7;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  width: 300px;
+  
+  &:focus {
+    outline: none;
+    border-color: #00b894;
+  }
+`;
+
+const EditButton = styled.button`
+  background-color: #6c5ce7;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  
+  &:hover {
+    background-color: #5f4dd1;
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
 `;
 
 const Level = styled.h2`
@@ -103,6 +142,9 @@ const ProgressFill = styled.div`
 `;
 
 export default function Profile() {
+  const [user, setUser] = useState(null);
+  const [isEditingUsername, setIsEditingUsername] = useState(false);
+  const [tempUsername, setTempUsername] = useState('');
   const [stats, setStats] = useState({
     totalTasks: 0,
     completedTasks: 0,
@@ -112,38 +154,94 @@ export default function Profile() {
   });
 
   useEffect(() => {
+    loadUserData();
     calculateStats();
   }, []);
+
+  const loadUserData = async () => {
+    try {
+      const userData = await userService.getUser();
+      setUser(userData);
+      setTempUsername(userData.username);
+    } catch (error) {
+      console.error('Error loading user:', error);
+    }
+  };
 
   const calculateStats = async () => {
     try {
       const tasks = await taskService.getAllTasks();
       const completed = tasks.filter(t => t.completed).length;
       const totalXP = tasks.filter(t => t.completed).reduce((sum, t) => sum + (t.xpValue || 10), 0);
-      const level = Math.floor(totalXP / 100) + 1; // 100 XP per level
+      const level = Math.floor(totalXP / 100) + 1;
 
       setStats({
         totalTasks: tasks.length,
         completedTasks: completed,
         totalXP: totalXP,
         level: level,
-        streak: 0 // You can implement streak logic later
+        streak: 0
       });
     } catch (error) {
       console.error('Error loading stats:', error);
     }
   };
 
+  const handleEditUsername = () => {
+    setIsEditingUsername(true);
+  };
+
+  const saveUsername = async () => {
+    try {
+      await userService.updateUser(user.id, tempUsername);
+      setUser({ ...user, username: tempUsername });
+      setIsEditingUsername(false);
+    } catch (error) {
+      console.error('Error updating username:', error);
+    }
+  };
+
+  const cancelEdit = () => {
+    setTempUsername(user?.username || '');
+    setIsEditingUsername(false);
+  };
+
   const xpForNextLevel = stats.level * 100;
   const currentLevelXP = stats.totalXP % 100;
   const progressToNextLevel = (currentLevelXP / 100) * 100;
+
+  if (!user) {
+    return (
+      <ProfileContainer>
+        <div style={{ color: '#00b894', textAlign: 'center' }}>Loading...</div>
+      </ProfileContainer>
+    );
+  }
 
   return (
     <ProfileContainer>
       <ProfileCard>
         <ProfileHeader>
-          <Avatar>U</Avatar>
-          <Username>User</Username>
+          <Avatar>{user.username.charAt(0).toUpperCase()}</Avatar>
+          {isEditingUsername ? (
+            <>
+              <UsernameInput
+                type="text"
+                value={tempUsername}
+                onChange={(e) => setTempUsername(e.target.value)}
+                autoFocus
+              />
+              <ButtonGroup>
+                <EditButton onClick={saveUsername}>Save</EditButton>
+                <EditButton onClick={cancelEdit}>Cancel</EditButton>
+              </ButtonGroup>
+            </>
+          ) : (
+            <>
+              <Username>{user.username}</Username>
+              <EditButton onClick={handleEditUsername}>Edit Username</EditButton>
+            </>
+          )}
           <Level>Level {stats.level}</Level>
         </ProfileHeader>
 
