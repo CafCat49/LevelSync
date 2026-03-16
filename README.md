@@ -16,9 +16,9 @@
 
 # Core Features (MVP)
 - [X] Feature 1: Create/edit/delete tasks
-- [X] Feature 2: Daily task list view
-- [ ] Feature 3: Task completion tracking
-- [ ] Feature 4: Simple XP/level system
+- [X] Feature 2: Task list view
+- [X] Feature 3: Task completion tracking
+- [X] Feature 4: Simple XP/level system
 
 ---
 
