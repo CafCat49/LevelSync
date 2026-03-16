@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = ["http://localhost:5173"]) // Allow React to call this API
+@CrossOrigin(origins = ["http://localhost:5173"])
 class TaskController(private val taskRepository: TaskRepository) {
     
     // GET all tasks

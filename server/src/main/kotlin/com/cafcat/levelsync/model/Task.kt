@@ -15,5 +15,6 @@ data class Task(
     val completed: Boolean = false,
     val xpValue: Int = 10,
     val dueTime: String? = null,
-    val recurring: Boolean = false
+    val recurring: Boolean = false,
+    val userId: Long = 0
 )
