@@ -19,15 +19,3 @@ RUN ./gradlew build -x test
 
 # Run the application
 CMD ["java", "-jar", "build/libs/levelsync-0.0.1-SNAPSHOT.jar"]
-```
-
-**Then:**
-1. Push this Dockerfile to your GitHub repo
-2. In Render, set **Dockerfile Path** to: `server/Dockerfile`
-3. Leave everything else as default
-
-**Push to GitHub:**
-```
-git add server/Dockerfile
-git commit -m "Add Dockerfile for deployment"
-git push
