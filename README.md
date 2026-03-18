@@ -64,6 +64,8 @@
 - Level progression  
 - Visual progress tracking
 
+--- 
+
 ## Getting Started
 
 ### Prerequisites
