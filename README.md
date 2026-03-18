@@ -18,7 +18,7 @@
 - [X] Feature 1: Create/edit/delete tasks
 - [X] Feature 2: Task list view
 - [X] Feature 3: Task completion tracking
-- [X] Feature 4: Simple XP/level system
+- [ ] Feature 4: Simple XP/level system
 
 ---
 
@@ -31,10 +31,10 @@
 ---
 
 ## Technical Architecture
-
 **Frontend:**
 - Framework: React.js
-- State Management: Context API
+- State Management: React Hooks
+- Routing: React Router
 - Styling: CSS styled-components
 
 **Backend:**
@@ -43,13 +43,11 @@
 - API: RESTful
 
 **Deployment:**
-- Frontend: TBD
-- Backend: TBD
+- Frontend/Backend: Render
 
 ---
 
 ## User Interface
-
 **Pages:**
 - Home
 - Dashboard (main task view)
@@ -61,8 +59,21 @@
 
 ---
 
-## Gamification Elements
-
+## Gamification Elements (Planned)
 - Personal XP gain
-- Level progression
-- Cosmetic rewards
+- Level progression  
+- Visual progress tracking
+
+## Getting Started
+
+### Prerequisites
+- Node.js 17+
+- Java 17+
+- PostgreSQL
+
+### Installation
+1. Clone the repository
+2. Install frontend dependencies: `cd client && npm install`
+3. Set up database connection in `server/src/main/resources/application.properties`
+4. Run backend: `cd server && ./gradlew bootRun`
+5. Run frontend: `cd client && npm run dev`
