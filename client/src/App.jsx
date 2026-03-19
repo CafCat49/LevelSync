@@ -3,10 +3,12 @@ import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
+import { AuthProvider } from './context/AuthContext'
 
 export default function MyApp() 
 {
     return (
+    <AuthProvider>
         <BrowserRouter>
             <Navbar />
             <Routes>
@@ -15,5 +17,6 @@ export default function MyApp()
                 <Route path="/profile" element={<Profile />} />
             </Routes>
         </BrowserRouter>
+    </AuthProvider>
     );
 }
