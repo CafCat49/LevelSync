@@ -87,3 +87,10 @@ Your Personal Task & Progress Companion
 3. Set up database connection in `server/src/main/resources/application.properties`
 4. Run backend: `cd server && ./gradlew bootRun`
 5. Run frontend: `cd client && npm run dev`
+
+## 🌐 Live Application
+
+- **Frontend:** [https://levelsync-frontend.onrender.com](https://levelsync-frontend.onrender.com)
+- **Backend API:** [https://levelsync-backend.onrender.com](https://levelsync-backend.onrender.com)
+
+Note: The backend may take 30 seconds to wake up on first request (free tier limitation).
