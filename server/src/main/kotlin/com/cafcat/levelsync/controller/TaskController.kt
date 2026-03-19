@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/tasks")
-@CrossOrigin(origins = ["http://localhost:5173"])
+@CrossOrigin(origins = ["http://localhost:5173", "https://levelsync-frontend.onrender.com"])
 class TaskController(private val taskRepository: TaskRepository) {
     
     // GET all tasks
