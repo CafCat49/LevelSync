@@ -23,19 +23,20 @@ class AuthService(
         }
         
         // Create new user with hashed password
-        val user = User(
+        val user: User = User(
             username = request.username,
             email = request.email,
             password = passwordEncoder.encode(request.password)
         )
         
         val savedUser = userRepository.save(user)
-        val token = jwtUtil.generateToken(savedUser.email, savedUser.id!!)
+        val userId = savedUser.id!!
+        val token = jwtUtil.generateToken(savedUser.email, userId)
         
         return AuthResponse(
             token = token,
             username = savedUser.username,
-            userId = savedUser.id
+            userId = userId
         )
     }
 
@@ -47,12 +48,13 @@ class AuthService(
             throw IllegalArgumentException("Invalid email or password")
         }
         
-        val token = jwtUtil.generateToken(user.email, user.id!!)
+        val userId = user.id!!
+        val token = jwtUtil.generateToken(user.email, userId)
         
         return AuthResponse(
             token = token,
             username = user.username,
-            userId = user.id
+            userId = userId
         )
     }
 }
