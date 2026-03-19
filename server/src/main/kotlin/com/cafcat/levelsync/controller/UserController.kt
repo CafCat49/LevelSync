@@ -15,7 +15,7 @@ class UserController(private val userRepository: UserRepository) {
     @GetMapping("/current")
     fun getCurrentUser(): ResponseEntity<User> {
         val user = userRepository.findAll().firstOrNull() 
-            ?: userRepository.save(User(username = "User"))
+            ?: userRepository.save(User(username = "User", password = "password", email = "email@example.com"))
         return ResponseEntity.ok(user)
     }
 
