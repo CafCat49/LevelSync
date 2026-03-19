@@ -2,7 +2,6 @@ package com.cafcat.levelsync.controller
 
 import com.cafcat.levelsync.model.User
 import com.cafcat.levelsync.repository.UserRepository
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
@@ -15,7 +14,7 @@ class UserController(private val userRepository: UserRepository) {
     @GetMapping("/current")
     fun getCurrentUser(): ResponseEntity<User> {
         val user = userRepository.findAll().firstOrNull() 
-            ?: userRepository.save(User(username = "User"))
+            ?: userRepository.save(User(username = "User", password = "password", email = "email@example.com"))
         return ResponseEntity.ok(user)
     }
 

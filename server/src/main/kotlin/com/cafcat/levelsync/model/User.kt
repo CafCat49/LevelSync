@@ -9,7 +9,15 @@ data class User(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long? = null,
-    
-    val username: String = "User",
+
+    @Column(unique = true, nullable = false)
+    val username: String,
+
+    @Column(nullable = false)
+    val password: String?,  // Will store hashed password
+
+    @Column(unique = true, nullable = false)
+    val email: String,
+
     val createdAt: LocalDateTime = LocalDateTime.now()
 )
