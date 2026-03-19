@@ -2,7 +2,6 @@ package com.cafcat.levelsync.controller
 
 import com.cafcat.levelsync.model.User
 import com.cafcat.levelsync.repository.UserRepository
-import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
