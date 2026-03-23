@@ -23,11 +23,12 @@ class SecurityConfig {
             .cors { it.configurationSource(corsConfigurationSource()) }
             .authorizeHttpRequests { auth ->
                 auth
-                    .requestMatchers("/api/auth/**").permitAll()  // Allow auth endpoints
-                    .anyRequest().authenticated()  // Require auth for everything else
+                    .requestMatchers("/favicon.ico").permitAll()   // <--- ADD THIS LINE
+                    .requestMatchers("/api/auth/**").permitAll()
+                    .anyRequest().authenticated()
             }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
-        
+
         return http.build()
     }
 
