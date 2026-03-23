@@ -17,3 +17,11 @@ export const updateTask = (id, task) => apiClient(`/tasks/${id}`, {
 export const deleteTask = (id) => apiClient(`/tasks/${id}`, {
   method: 'DELETE',
 });
+
+// Keep your existing exports above, then add this:
+export const taskService = {
+  getAllTasks,
+  createTask,
+  updateTask,
+  deleteTask,
+};
