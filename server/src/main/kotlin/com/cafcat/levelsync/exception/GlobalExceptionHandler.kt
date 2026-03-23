@@ -48,12 +48,11 @@ class GlobalExceptionHandler {
     // 4. The "Catch-All" - Now with logging!
     @ExceptionHandler(Exception::class)
     fun handleGenericException(ex: Exception): ResponseEntity<ErrorResponse> {
-        // This prints the actual error to your IntelliJ/Server console
         logger.error("Internal Server Error: ", ex)
 
         return buildResponse(
             HttpStatus.INTERNAL_SERVER_ERROR,
-            "An internal server error occurred. Please contact support."
+            "DEBUG: ${ex.javaClass.simpleName} - ${ex.message}" // This exposes the real error
         )
     }
 
