@@ -1,40 +1,19 @@
-const API_URL = 'https://levelsync-backend.onrender.com/api/tasks';
+// src/services/taskService.jsx
+import apiClient from './apiClient';
 
-export const taskService = {
-  // Get all tasks
-  getAllTasks: async () => {
-    const response = await fetch(API_URL);
-    return response.json();
-  },
+// We just pass the relative path (the endpoint)
+export const getAllTasks = () => apiClient('/tasks');
 
-  // Create a task
-  createTask: async (task) => {
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(task),
-    });
-    return response.json();
-  },
+export const createTask = (task) => apiClient('/tasks', {
+  method: 'POST',
+  body: JSON.stringify(task),
+});
 
-  // Update a task
-  updateTask: async (id, task) => {
-    const response = await fetch(`${API_URL}/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(task),
-    });
-    return response.json();
-  },
+export const updateTask = (id, task) => apiClient(`/tasks/${id}`, {
+  method: 'PUT',
+  body: JSON.stringify(task),
+});
 
-  // Delete a task
-  deleteTask: async (id) => {
-    await fetch(`${API_URL}/${id}`, {
-      method: 'DELETE',
-    });
-  },
-};
+export const deleteTask = (id) => apiClient(`/tasks/${id}`, {
+  method: 'DELETE',
+});

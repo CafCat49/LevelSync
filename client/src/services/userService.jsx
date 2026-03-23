@@ -1,33 +1,16 @@
-const API_URL = 'https://levelsync-backend.onrender.com/api/users'
+// src/services/userService.jsx
+import apiClient from './apiClient';
 
-const getAuthHeader = () => {
-  const token = localStorage.getItem('token')
-  return token ? { 'Authorization': `Bearer ${token}` } : {}
-}
+export const getUser = (id) => apiClient(`/users/${id}`);
 
-export const getUser = async (id) => {
-  const response = await fetch(`${API_URL}/${id}`, {
-    headers: {
-      'Content-Type': 'application/json',
-      ...getAuthHeader()
-    }
-  })
-  return await response.json()
-}
-
-export const updateUser = async (id, user) => {
-  const response = await fetch(`${API_URL}/${id}`, {
+export const updateUser = (id, user) => 
+  apiClient(`/users/${id}`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-      ...getAuthHeader()
-    },
     body: JSON.stringify(user),
-  })
-  return await response.json()
-}
+  });
 
+// Keeping your object export for compatibility with your existing imports
 export const userService = {
   getUser,
   updateUser,
-}
+};
