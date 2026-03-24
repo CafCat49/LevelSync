@@ -1,6 +1,7 @@
 {
   "name": "level-sync",
   "version": "1.0.0",
+  "proxy": "https://levelsync-backend.onrender.com/",
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
