@@ -88,6 +88,7 @@ Your Personal Task & Progress Companion
 4. Run backend: `cd server && ./gradlew bootRun`
 5. Run frontend: `cd client && npm run dev`
 
+
 ## 🌐 Live Application
 
 - **Frontend:** [https://levelsync-frontend.onrender.com](https://levelsync-frontend.onrender.com)

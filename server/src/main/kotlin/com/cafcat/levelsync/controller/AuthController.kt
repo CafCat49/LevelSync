@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
 @CrossOrigin(origins = ["http://localhost:5173", "https://levelsync-frontend.onrender.com"])
 class AuthController(private val authService: AuthService) {
 

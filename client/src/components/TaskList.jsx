@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { taskService } from '../services/taskService';
+import * as taskService from '../services/taskService';
 import styled from 'styled-components';
 
 // Styled components
 const TaskListContainer = styled.div`
-  max-width: 1200x;
+  max-width: 1200px;
   margin: 20px auto;
   display: flex;
   flex-wrap: wrap;
