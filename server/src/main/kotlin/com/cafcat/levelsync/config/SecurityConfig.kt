@@ -16,6 +16,12 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 @EnableWebSecurity
 class SecurityConfig {
 
+    init {
+        println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        println("SECURITY CONFIG LOADED SUCCESSFULLY")
+        println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    }
+
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain {
         http
@@ -25,6 +31,8 @@ class SecurityConfig {
                 auth
                     .requestMatchers("/api/auth/**").permitAll()  // Allow auth endpoints
                     .anyRequest().authenticated()  // Require auth for everything else
+                    .requestMatchers("/api/auth/**").permitAll()
+                    .anyRequest().authenticated()
             }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }
         
